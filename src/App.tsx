@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import AboutUs from './Components/AboutUs';
 import { Store } from './Components/AppState';
 import Home from './Components/Home';
@@ -18,6 +18,8 @@ export default function App() {
           <Route path='/Home' element={<Home/>}/>
           <Route path='/AboutUs' element={<AboutUs/>}/>
           <Route path='/Product' element={<Product/>}/>
+          <Route path='/' element={<Home/>}/>
+          <Route path="*" element={<Navigate to="/" replace/>}/>    
         </Routes>
       </BrowserRouter>
       </Provider>
