@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { finished } from "stream";
 
 interface item {
     name:string,

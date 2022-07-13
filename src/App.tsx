@@ -5,6 +5,7 @@ import { Store } from './Components/AppState';
 import Home from './Components/Home';
 import Navigation from './Components/Navbar';
 import Product from './Components/Product';
+import './Components/FirebaseSetup';
 
 
 export default function App() {
