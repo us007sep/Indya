@@ -15,17 +15,11 @@ const useStyle = makeStyles({
 
 export default function LoadingSpinner(){
     const style=useStyle();
-    const renderSpinner=()=>{
-        return(
+    return(
+        <Backdrop open={true} className={style.backdrop}>    
         <div className={style.spinner}>
-                <CircularProgress/>
+                <CircularProgress style={{color:'#f6f1db'}}/>
         </div>
-        )
-    }
-
-    return (
-        <Backdrop open={true} className={style.backdrop}>       
-            {renderSpinner()}
         </Backdrop> 
-    )
+        )
 }

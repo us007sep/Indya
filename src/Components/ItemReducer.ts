@@ -15,7 +15,7 @@ interface items {
 }
 
 const _initialState : items = {
-    areloaded:true,
+    areloaded:false,
     it:[],
 }
 

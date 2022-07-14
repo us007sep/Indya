@@ -8,6 +8,7 @@ import Product from './Components/Product';
 import './Components/FirebaseSetup';
 import Kurtis from './Components/kurtis';
 import Lehngas from './Components/Lehngas&Sarees';
+import ScrollToTop from './Components/ScrollToTop';
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
       <Provider store={Store} >
       <BrowserRouter>
         <Navigation/>
+        <ScrollToTop/>
         <Routes>
           <Route path='/Home' element={<Home/>}/>
           <Route path='/AboutUs' element={<AboutUs/>}/>

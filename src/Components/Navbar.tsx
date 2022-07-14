@@ -1,6 +1,6 @@
 import { AppBar, Button,  InputBase, makeStyles, Toolbar } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-import start from "../Images/Logo.png"
+import logo from "../Images/Logo.png"
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
@@ -12,8 +12,6 @@ const useStyle = makeStyles({
         backgroundColor:'#f6f1db',
         maxHeight:'70px',
         border: '1.5px #000 solid',
-        width:'100%',
-        position:'fixed',
         zIndex:1000,
         top:0
 
@@ -27,8 +25,7 @@ const useStyle = makeStyles({
         border: '1.5px #000 solid',
     },
     buttons:{
-        display:'flex',
-        flexDirection:'row'
+        
     },
     img:{
         maxHeight:'30px',
@@ -47,34 +44,33 @@ export default function Navigation(){
     const hist = useNavigate();
     return(
         <>
-            <Navbar className={style.navbar} expand="lg">
-            <Container fluid>
-                <Navbar.Brand href="#"><img src={start} className={style.img} alt="logo"></img></Navbar.Brand>
+            <Navbar expand="lg" fixed="top" style={{backgroundColor:'#f6f1db', border: '1.5px #000 solid',}} >
+            <Container fluid >
+                <Navbar.Brand href="/"><img src={logo} className={style.img} alt="logo"></img></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                 <Nav
+                
                     className="me-auto my-2 my-lg-0"
                     style={{ maxHeight: '100px' }}
                     navbarScroll
                 >
-                    <Button className={style.redButtons} onClick={()=> hist("/Lehngas&Sarees")}><b>Lehngas & Sarees</b></Button>
-                    <Button onClick={()=> hist("/Kurtis")}><b>Kurtis</b></Button>
+                    {!isHome && <Nav.Link href="/Home" className={style.buttons}>Home</Nav.Link>}
+                    <Nav.Link onClick={()=>hist("/Kurtis")}>Kurtis</Nav.Link>
+                    <Nav.Link onClick={()=>hist("/Lehngas&Sarees")}>Lehngas & Sarees</Nav.Link>
+                    <Nav.Link href="/">Login</Nav.Link>
+                    <Nav.Link href="/">SignUp</Nav.Link>
+                </Nav>
 
-                <Form className="d-flex" style={{width:'600px', backgroundColor:'#b69575',border:'1.5px black solid',margin:20}}>
+                <Form className="d-flex">
                     <Form.Control
                     type="search"
-                    placeholder="Search for products, brands and more..."
+                    placeholder="Search"
                     className="me-2"
                     aria-label="Search"
                     />
-                    <Button variant="outlined" style={{backgroundColor:'#b69575', borderColor:'#b69575'}}><b>Search</b></Button>
+                    <Button variant="outlined" style={{backgroundColor:'#b69575', color:'#fff'}}>Search</Button>
                 </Form>
-                
-                    {!isAboutUs && <Button onClick={()=>hist("/AboutUs")}><b>About Us</b></Button>}
-                    {!isHome && <Button onClick={()=> hist("/Home")}><b>Home</b></Button>}
-                    <Button><b>Login</b></Button>
-                </Nav>
-                
                 </Navbar.Collapse>
             </Container>
             </Navbar>

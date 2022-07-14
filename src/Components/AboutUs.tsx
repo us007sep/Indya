@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/styles"
 const useStyle = makeStyles({
     body:{
         backgroundColor:'#ede8d8',
-        height:4.4*window.innerHeight,
+        height:3.9*window.innerHeight,
         padding:150,
         paddingTop:100
     },
