@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface item {
+export interface Item {
     name:string,
     description:string,
     featured_image:string,
@@ -11,7 +11,7 @@ interface item {
 
 interface items {
     areloaded : boolean,
-    it : item[]
+    it : Item[]
 }
 
 const _initialState : items = {
@@ -26,7 +26,7 @@ const ItemsReducer = createSlice({
         started_writing(state:items){
             state.areloaded=false
         },
-        finished_writing(state:items , action:PayloadAction<item[]>){
+        finished_writing(state:items , action:PayloadAction<Item[]>){
             state.it = action.payload;
             state.areloaded = true;
         }

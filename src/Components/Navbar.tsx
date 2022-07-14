@@ -38,11 +38,10 @@ export default function Navigation(){
         <>
             <AppBar  position='fixed'>
                 <Toolbar className={style.navbar}>
-                    <img src={start} className={style.img} ></img>
+                    <img src={start} className={style.img} alt="logo"></img>
                     <div className={style.buttons}>
-                        <Button className={style.redButtons}><b>Lehngas & Sarees</b></Button>
-                        <Button><b>Kurtis</b></Button>
-                        <Button><b>Suits</b></Button>
+                        <Button className={style.redButtons} onClick={()=> hist("/Lehngas&Sarees")}><b>Lehngas & Sarees</b></Button>
+                        <Button onClick={()=> hist("/Kurtis")}><b>Kurtis</b></Button>
                         <Button className={style.redButtons}><b>Sale</b></Button>
                     </div>
                     <div className={style.searchBar}>

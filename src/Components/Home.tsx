@@ -6,6 +6,13 @@ import card3 from "../Images/Favourites/Card3.jpeg"
 import div2Img from "../Images/Div2.jpeg"
 import trending from "../Images/Trending.jpeg"
 import AboutUs from "./AboutUs"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Schema } from "./AppState"
+import { finished_writing, Item, started_writing } from "./ItemReducer"
+import LoadingSpinner from "./LoadingSpinner"
+import ItemCard from "./ItemCard"
+
 
 const useStyle = makeStyles({
     image:{
@@ -63,14 +70,50 @@ const useStyle = makeStyles({
     video:{
         width:'60%',
         marginRight:30,
+    },
+    items_grid:{
+        margin : 30
     }
 
 })
 
+interface Iitems{
+    data:{items:Item[]}
+}
+
 export default function Home(){
     const style = useStyle();
+    const dispatch = useDispatch();
+    const selector = useSelector((x:Schema) => x.ItemsReducer);
+
+    useEffect(()=>{
+        async function api() {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var graphql = JSON.stringify({
+            query: "{\n    items{\n        name,\n        id,\n        featured_image,\n        price,\n        description,\n        category\n    }\n}",
+            variables: {}
+            })
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: graphql,
+            };
+
+            const response = await fetch("https://houseofindya.herokuapp.com/graphql", requestOptions);
+            const json :Iitems= await response.json();
+
+            dispatch(finished_writing(json.data.items));
+        }
+        dispatch(started_writing);
+        api();    
+    },[dispatch])
+
     return(
         <>
+            {!selector.areloaded && <LoadingSpinner/>}
+
             <div className={style.top}>
                 <div className={style.topStyle}><b>Worldwide Shopping</b></div>
                 <div className={style.top_sub}><b>The Big Indya Sale | Upto 70% OFF</b></div>
@@ -89,6 +132,11 @@ export default function Home(){
                 <Typography variant="h4" className={style.div2text}><b>OUR FAVOURITES THIS SEASON</b></Typography>
                 <img src={div2Img} className={style.image} alt="Favourites"></img>
             </div>
+
+            <Grid container spacing={6} className={style.items_grid}>
+                {selector.it.filter(x=> x.category.toLowerCase().includes("kurtis")).map(x=><Grid item>
+                    <ItemCard{...x}/></Grid>)}
+            </Grid>
 
             {/* Division for video + content */}
             <div className={style.videoDiv}>
@@ -119,6 +167,11 @@ export default function Home(){
                 <Typography variant="h4" className={style.div2text}><b>TRENDING RIGHT NOW</b></Typography>
                 <img src={trending} className={style.image} alt="Trending"></img>
             </div>
+
+            <Grid container spacing={6} className={style.items_grid}>
+                {selector.it.filter(x=> x.category.toLowerCase().includes("lehngas")).map(x=><Grid item>
+                    <ItemCard{...x}/></Grid>)}
+            </Grid>
 
             <AboutUs/>
         </>

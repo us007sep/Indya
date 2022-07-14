@@ -6,6 +6,8 @@ import Home from './Components/Home';
 import Navigation from './Components/Navbar';
 import Product from './Components/Product';
 import './Components/FirebaseSetup';
+import Kurtis from './Components/kurtis';
+import Lehngas from './Components/Lehngas&Sarees';
 
 
 export default function App() {
@@ -17,7 +19,9 @@ export default function App() {
         <Routes>
           <Route path='/Home' element={<Home/>}/>
           <Route path='/AboutUs' element={<AboutUs/>}/>
-          <Route path='/Product' element={<Product/>}/>
+          <Route path='/Products' element={<Product/>}/>
+          <Route path='/Kurtis' element={<Kurtis/>}/>
+          <Route path='/Lehngas&Sarees' element={<Lehngas/>}/>
           <Route path='/' element={<Home/>}/>
           <Route path="*" element={<Navigate to="/" replace/>}/>    
         </Routes>
