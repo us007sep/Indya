@@ -8,14 +8,14 @@ import { makeStyles } from '@material-ui/core';
 const useStyle = makeStyles({
     carousel:{
         margin:10,
-        marginTop:0,
-        marginBottom:10,
+        marginTop:30,
+        marginBottom:30,
     }
 })
 
-function UncontrolledExample() {
+export default function UncontrolledExample() {
     const style = useStyle();
-  return (
+    return (
     <Carousel className={style.carousel}>
       <Carousel.Item>
         <img
@@ -52,5 +52,3 @@ function UncontrolledExample() {
     </Carousel>
   );
 }
-
-export default UncontrolledExample;

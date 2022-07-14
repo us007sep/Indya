@@ -14,7 +14,7 @@ const useStyle = makeStyles({
         color:'black',
         borderRadius: '20px',
         margin:10,
-        marginTop:90
+        marginTop:25
     },
     top_sub:{
         backgroundColor:'#b69575',

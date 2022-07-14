@@ -45,7 +45,7 @@ const useStyle = makeStyles({
         color:'black',
         borderRadius: '20px',
         margin:10,
-        marginTop:90
+        marginTop:25
     },
     top_sub:{
         backgroundColor:'#b69575',
@@ -111,9 +111,10 @@ export default function Home(){
     },[dispatch])
 
     return(
+        
         <>
             {!selector.areloaded && <LoadingSpinner/>}
-
+            {selector.areloaded && <div>
             <div className={style.top}>
                 <div className={style.topStyle}><b>Worldwide Shopping</b></div>
                 <div className={style.top_sub}><b>The Big Indya Sale | Upto 70% OFF</b></div>
@@ -121,7 +122,6 @@ export default function Home(){
             </div>
 
             <Carousel/>
-            {/* <img src={start} className={style.image} alt="slideshow"></img> */}
             
             <div className={style.grid1}>
                 <img src={card1} className={style.grid1card} alt="card1"></img>
@@ -176,6 +176,7 @@ export default function Home(){
             </Grid>
 
             <AboutUs/>
+            </div>}
         </>
     )
 }
