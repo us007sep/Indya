@@ -1,5 +1,6 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { useNavigate } from "react-router-dom";
 import { Item } from "./ItemReducer";
 
 const useStyle = makeStyles({
@@ -11,9 +12,10 @@ const useStyle = makeStyles({
 })
 
 export default function(prop : Item){
+    const hist = useNavigate();
     const style = useStyle();
     return(
-        <Card className={style.card}>
+        <Card className={style.card} onClick={()=>hist("/Products/"+ prop.name)}>
             <CardActionArea>
                 <CardMedia component="img" image={prop.featured_image} alt={prop.name}/>
                 <CardContent>

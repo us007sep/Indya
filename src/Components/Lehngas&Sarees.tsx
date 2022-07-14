@@ -1,6 +1,7 @@
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles"
 import { useSelector } from "react-redux";
+import AboutUs from "./AboutUs";
 import { Schema } from "./AppState";
 import ItemCard from "./ItemCard";
 
@@ -48,6 +49,7 @@ export default function Kurtis(){
         {selector.it.filter(x=> x.category.toLowerCase().includes("lehngas")).map(x=><Grid item>
             <ItemCard{...x}/></Grid>)}
         </Grid>
+        <AboutUs/>
         </>
     )
 }
