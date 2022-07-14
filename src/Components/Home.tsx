@@ -1,5 +1,4 @@
 import { Fab, Grid, makeStyles, Typography } from "@material-ui/core"
-import start from "../Images/SlideShow/Slideshow3.jpeg"
 import card1 from "../Images/Favourites/Card1.jpeg"
 import card2 from "../Images/Favourites/Card2.jpeg"
 import card3 from "../Images/Favourites/Card3.jpeg"
@@ -12,6 +11,7 @@ import { Schema } from "./AppState"
 import { finished_writing, Item, started_writing } from "./ItemReducer"
 import LoadingSpinner from "./LoadingSpinner"
 import ItemCard from "./ItemCard"
+import Carousel from "./Carousel"
 
 
 const useStyle = makeStyles({
@@ -119,7 +119,9 @@ export default function Home(){
                 <div className={style.top_sub}><b>The Big Indya Sale | Upto 70% OFF</b></div>
                 <div className={style.topStyle}><b>📢 Free Shipping on All Orders</b></div>
             </div>
-            <img src={start} className={style.image} alt="slideshow"></img>
+
+            <Carousel/>
+            {/* <img src={start} className={style.image} alt="slideshow"></img> */}
             
             <div className={style.grid1}>
                 <img src={card1} className={style.grid1card} alt="card1"></img>
