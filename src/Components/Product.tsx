@@ -1,9 +1,11 @@
 import { Card, CardActionArea, CardContent, CardMedia, Fab, makeStyles, Typography } from "@material-ui/core"
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import AboutUs from "./AboutUs";
 import { Schema } from "./AppState";
-import { Item } from "./ItemReducer";
+import { finished_writing, Item, started_writing } from "./ItemReducer";
+import LoadingSpinner from "./LoadingSpinner";
 
 const useStyle = makeStyles({
     top:{
@@ -47,12 +49,45 @@ const useStyle = makeStyles({
     }
 })
 
+interface Iitems{
+    data:{items:Item[]}
+}
+
 export default function Product(){
     const obj = useParams <{name:string}>();
     const style = useStyle();
     const selector = useSelector((x:Schema) => x.ItemsReducer);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        async function api() {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var graphql = JSON.stringify({
+            query: "{\n    items{\n        name,\n        id,\n        featured_image,\n        price,\n        description,\n        category\n    }\n}",
+            variables: {}
+            })
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: graphql,
+            };
+
+            const response = await fetch("https://houseofindya.herokuapp.com/graphql", requestOptions);
+            const json :Iitems= await response.json();
+
+            dispatch(finished_writing(json.data.items));
+        }
+        dispatch(started_writing);
+        api();    
+    },[dispatch])
+
     return(
         <>
+        {!selector.areloaded && <LoadingSpinner />} 
+        {selector.areloaded && 
+        <div>
         <div className={style.top}>
             <div className={style.topStyle}><b>Worldwide Shopping</b></div>
             <div className={style.top_sub}><b>The Big Indya Sale | Upto 70% OFF</b></div>
@@ -103,10 +138,12 @@ export default function Product(){
 
             </div>
         </div>)}
+        
+        <AboutUs/>    
+        </div>}
 
-        <AboutUs/>
-            
         </>
 
     )
 }
+

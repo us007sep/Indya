@@ -86,6 +86,7 @@ export default function Home(){
     const style = useStyle();
     const dispatch = useDispatch();
     const selector = useSelector((x:Schema) => x.ItemsReducer);
+    const location = window.location;
 
     useEffect(()=>{
         async function api() {

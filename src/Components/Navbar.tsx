@@ -24,16 +24,10 @@ const useStyle = makeStyles({
         borderRadius:'4px',
         border: '1.5px #000 solid',
     },
-    buttons:{
-        
-    },
     img:{
         maxHeight:'30px',
         marginRight:'30px',
         marginLeft:'30px'
-    },
-    redButtons:{
-        color:'#b69575'
     },
 })
 
@@ -55,11 +49,14 @@ export default function Navigation(){
                     style={{ maxHeight: '100px' }}
                     navbarScroll
                 >
-                    {!isHome && <Nav.Link href="/Home" className={style.buttons}>Home</Nav.Link>}
-                    <Nav.Link onClick={()=>hist("/Kurtis")}>Kurtis</Nav.Link>
-                    <Nav.Link onClick={()=>hist("/Lehngas&Sarees")}>Lehngas & Sarees</Nav.Link>
-                    <Nav.Link href="/">Login</Nav.Link>
-                    <Nav.Link href="/">SignUp</Nav.Link>
+                    {!isHome && <Nav.Link href="/Home"><b>Home</b></Nav.Link>}
+                    <Nav.Link onClick={()=>hist("/Kurtis")}><b>Kurtis</b></Nav.Link>
+                    <Nav.Link onClick={()=>hist("/Lehngas&Sarees")}><b>Lehngas & Sarees</b></Nav.Link>
+                    <Nav.Link onClick={()=>hist("/Login")}><b>Login</b></Nav.Link>
+                    <Nav.Link onClick={()=>hist("/SignUp")}><b>SignUp</b></Nav.Link>
+                    <Nav.Link onClick={()=>hist("/Profile")}><b>Profile</b></Nav.Link>
+                    <Nav.Link onClick={()=>hist("/Cart")}><b>Cart</b></Nav.Link>
+                    <Nav.Link onClick={()=>hist("/AboutUs")}><b>About Us</b></Nav.Link>
                 </Nav>
 
                 <Form className="d-flex">

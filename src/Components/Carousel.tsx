@@ -4,6 +4,7 @@ import start2 from "../Images/SlideShow/Slideshow2.jpeg"
 import start3 from "../Images/SlideShow/Slideshow1.jpeg"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { makeStyles } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
 
 const useStyle = makeStyles({
     carousel:{
@@ -13,41 +14,36 @@ const useStyle = makeStyles({
     }
 })
 
-export default function UncontrolledExample() {
+export default function Carousel_() {
+    const hist = useNavigate();
     const style = useStyle();
     return (
     <Carousel className={style.carousel}>
-      <Carousel.Item>
+      <Carousel.Item interval={2000}>
         <img
           className="d-block w-100"
           src={start1}
           alt="First slide"
           style={{borderRadius: '40px'}}
+          onClick={()=>hist("/Lehngas&Sarees")}
         />
-        <Carousel.Caption>
-        </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item interval={2000}>
         <img
           className="d-block w-100"
           src={start2}
           alt="Second slide"
           style={{borderRadius: '40px'}}
+          onClick={()=>hist("/Kurtis")}
         />
-
-        <Carousel.Caption>
-        </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item interval={2000}>
         <img
           className="d-block w-100"
           src={start3}
           alt="Third slide"
           style={{borderRadius: '40px'}}
         />
-
-        <Carousel.Caption>
-        </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
   );

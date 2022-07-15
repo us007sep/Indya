@@ -5,7 +5,7 @@ export default function GoToTop() {
 const routePath = useLocation();
 	
 useEffect(() => {
-	window.scrollTo({top:(0), behavior:'auto'});
+	window.scrollTo({top:(0)});
 }, [routePath]);
 
 return null;
