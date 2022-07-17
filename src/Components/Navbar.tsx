@@ -61,7 +61,7 @@ export default function Navigation(){
         <>
             <Navbar expand="lg" fixed="top" style={{backgroundColor:'#f6f1db', border: '1.5px #000 solid',}} >
             <Container fluid >
-                <Navbar.Brand href="/"><img src={logo} className={style.img} alt="logo"></img></Navbar.Brand>
+                <Navbar.Brand href="/Home"><img src={logo} className={style.img} alt="logo"></img></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                 <Nav

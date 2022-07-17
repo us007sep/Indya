@@ -40,7 +40,7 @@ export default function App() {
           {!UserExist && <Route path='/SignUp' element={<SignUp/>}/>}
           {UserExist && <Route path='/Profile' element={<Profile/>}/>}
           <Route path='/' element={<Home/>}/>
-          <Route path="*" element={<Navigate to="/" replace/>}/>
+          <Route path="*" element={<Navigate to="/Home" replace/>}/>
           <Route path='/LogOut' element={<LogOut/>}/>
         </Routes>
       </BrowserRouter>
