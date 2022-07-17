@@ -11,11 +11,17 @@ import Lehngas from './Components/Lehngas&Sarees';
 import ScrollToTop from './Components/ScrollToTop';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
-import Cart from './Components/Cart';
 import Profile from './Components/Profile';
+import { useContext } from 'react';
+import { UserContext } from './Components/UserContext';
+import LogOut from './Components/LogOut';
+import Accessories from './Components/Accessories';
+import NewArrivals from './Components/NewArrivals';
 
 
 export default function App() {
+  const userCont = useContext(UserContext);
+  const UserExist = userCont && userCont.uid;
   return (
     <>
       <Provider store={Store} >
@@ -28,12 +34,14 @@ export default function App() {
           <Route path='/Products/:name' element={<Product/>}/>
           <Route path='/Kurtis' element={<Kurtis/>}/>
           <Route path='/Lehngas&Sarees' element={<Lehngas/>}/>
-          <Route path='/Login' element={<Login/>}/>
-          <Route path='/SignUp' element={<SignUp/>}/>
-          <Route path='/Cart' element={<Cart/>}/>
-          <Route path='/Profile' element={<Profile/>}/>
+          <Route path='/Accessories' element={<Accessories/>}/>
+          <Route path='/NewArrivals' element={<NewArrivals/>}/>
+          {!UserExist && <Route path='/Login' element={<Login/>}/>}
+          {!UserExist && <Route path='/SignUp' element={<SignUp/>}/>}
+          {UserExist && <Route path='/Profile' element={<Profile/>}/>}
           <Route path='/' element={<Home/>}/>
-          <Route path="*" element={<Navigate to="/" replace/>}/>    
+          <Route path="*" element={<Navigate to="/" replace/>}/>
+          <Route path='/LogOut' element={<LogOut/>}/>
         </Routes>
       </BrowserRouter>
       </Provider>

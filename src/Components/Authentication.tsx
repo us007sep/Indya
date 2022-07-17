@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
-import background from "../Images/SignUp.jpeg"
+import background from "../Images/SignUp.jpeg";
 
 interface Title{
     title:string;
@@ -11,6 +11,7 @@ interface Title{
     showLogin?:boolean;
     showfname?:boolean;
     showlname?:boolean;
+    onSubmitClick:(email:string,password:string,displayName?:string)=> Promise<string>;
 }
 
 interface IAuthentication{
@@ -64,7 +65,15 @@ export default function Authentication(props : Title){
     const [Spinner,SetSpinner]=useState<boolean>(false);
     const [error, seterror]=useState<string>("");
     async function onSubmit (data:IAuthentication){
-        
+        SetSpinner(true);
+        const message = await props.onSubmitClick(data.email,data.password,data.fname + data.lname);
+        SetSpinner(false);  
+        if(message) {
+           seterror(message);
+        }
+        else{
+            history("/Home");
+        }
     }
 
     const history = useNavigate();
@@ -109,6 +118,7 @@ export default function Authentication(props : Title){
             {props.showLogin && <Fab variant="extended" onClick={()=> history("/Login")}>Login</Fab>}
             {props.showSignUp && <Fab variant="extended" onClick={()=> history("/SignUp")}>Sign Up</Fab>}
         </div>          
+
 
             {Spinner && <LoadingSpinner/>}
             {error && <Typography id="error" variant="body1" className={style.errorMsg}>{error}</Typography>}

@@ -12,6 +12,7 @@ import { finished_writing, Item, started_writing } from "./ItemReducer"
 import LoadingSpinner from "./LoadingSpinner"
 import ItemCard from "./ItemCard"
 import Carousel from "./Carousel"
+import { useNavigate } from "react-router-dom"
 
 
 const useStyle = makeStyles({
@@ -86,7 +87,7 @@ export default function Home(){
     const style = useStyle();
     const dispatch = useDispatch();
     const selector = useSelector((x:Schema) => x.ItemsReducer);
-    const location = window.location;
+    const hist = useNavigate();
 
     useEffect(()=>{
         async function api() {
@@ -94,7 +95,7 @@ export default function Home(){
             myHeaders.append("Content-Type", "application/json");
 
             var graphql = JSON.stringify({
-            query: "{\n    items{\n        name,\n        id,\n        featured_image,\n        price,\n        description,\n        category\n    }\n}",
+            query: "{\n  items{\n    name\n    description\n    featured_image1\n    featured_image2\n    featured_image3\n    featured_image4\n    category\n    price\n    home\n    new\n  }\n}",
             variables: {}
             })
             var requestOptions = {
@@ -134,11 +135,11 @@ export default function Home(){
             {/* Favourites this Season */}
             <div>
                 <Typography variant="h4" className={style.div2text}><b>OUR FAVOURITES THIS SEASON</b></Typography>
-                <img src={div2Img} className={style.image} alt="Favourites"></img>
+                <img src={div2Img} className={style.image} alt="Favourites" onClick={()=>hist("/Accessories")}></img>
             </div>
 
             <Grid container spacing={6} className={style.items_grid}>
-                {selector.it.filter(x=> x.category.toLowerCase().includes("kurtis")).map(x=><Grid item>
+                {selector.it.filter(x=> x.home===1).map(x=><Grid item>
                     <ItemCard{...x}/></Grid>)}
             </Grid>
 
@@ -169,11 +170,11 @@ export default function Home(){
 
             <div>
                 <Typography variant="h4" className={style.div2text}><b>TRENDING RIGHT NOW</b></Typography>
-                <img src={trending} className={style.image} alt="Trending"></img>
+                <img src={trending} className={style.image} alt="Trending" onClick={()=>hist("/NewArrivals")}></img>
             </div>
 
             <Grid container spacing={6} className={style.items_grid}>
-                {selector.it.filter(x=> x.category.toLowerCase().includes("lehngas")).map(x=><Grid item>
+                {selector.it.filter(x=> x.category.toLowerCase().includes("accessories")).map(x=><Grid item>
                     <ItemCard{...x}/></Grid>)}
             </Grid>
 

@@ -3,10 +3,15 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface Item {
     name:string,
     description:string,
-    featured_image:string,
+    featured_image1:string,
+    featured_image2:string,
+    featured_image3:string,
+    featured_image4:string,
     id:string,
     price:number,
-    category:string
+    category:string,
+    home:number,
+    new:number
 }
 
 interface items {

@@ -1,43 +1,19 @@
-import { Card, CardActionArea, CardContent, CardMedia, Fab, makeStyles, Typography } from "@material-ui/core"
+import { Card, CardActionArea, CardMedia, Fab, makeStyles, Typography } from "@material-ui/core"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AboutUs from "./AboutUs";
 import { Schema } from "./AppState";
 import { finished_writing, Item, started_writing } from "./ItemReducer";
 import LoadingSpinner from "./LoadingSpinner";
 
 const useStyle = makeStyles({
-    top:{
-        backgroundColor:'#ffe05c',
-        minHeight:38,
-        display:'flex',
-        justifyContent:'space-around',
-        color:'black',
-        borderRadius: '20px',
-        margin:10,
-        marginTop:90,
-        width:window.innerWidth-20
-    },
-    top_sub:{
-        backgroundColor:'#b69575',
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center',
-        minWidth:window.innerWidth/3,
-    },
-    topStyle:{
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center',
-        minWidth:window.innerWidth/3,
-    },
     card:{
-        width:window.innerWidth/3,
+        width:window.innerWidth/4,
         borderRadius:20,
     },
     productDisplay:{
-        margin:70,
+        margin:30,
         marginTop:40,
         display:'flex',
         flexDirection:'row',
@@ -46,6 +22,11 @@ const useStyle = makeStyles({
     },
     buttons:{
         marginRight:20
+    },
+    otherImages:{
+        width:window.innerWidth/4,
+        borderRadius:20,
+        marginLeft:90
     }
 })
 
@@ -58,6 +39,7 @@ export default function Product(){
     const style = useStyle();
     const selector = useSelector((x:Schema) => x.ItemsReducer);
     const dispatch = useDispatch();
+    const history = useNavigate();
 
     useEffect(()=>{
         async function api() {
@@ -65,7 +47,7 @@ export default function Product(){
             myHeaders.append("Content-Type", "application/json");
 
             var graphql = JSON.stringify({
-            query: "{\n    items{\n        name,\n        id,\n        featured_image,\n        price,\n        description,\n        category\n    }\n}",
+            query: "{\n  items{\n    name\n    description\n    featured_image1\n    featured_image2\n    featured_image3\n    featured_image4\n    category\n    price\n    home\n    new\n  }\n}",
             variables: {}
             })
             var requestOptions = {
@@ -87,32 +69,27 @@ export default function Product(){
         <>
         {!selector.areloaded && <LoadingSpinner />} 
         {selector.areloaded && 
-        <div>
-        <div className={style.top}>
-            <div className={style.topStyle}><b>Worldwide Shopping</b></div>
-            <div className={style.top_sub}><b>The Big Indya Sale | Upto 70% OFF</b></div>
-            <div className={style.topStyle}><b>📢 Free Shipping on All Orders</b></div>
-        </div>
+        <div style={{marginTop:90}}>
 
         {selector.it.filter(x => x.name.includes(obj.name!)).map( x=>
+        <div>
         <div className={style.productDisplay}>
         <div style={{marginRight:40}}>
-            
+
             <Card className = {style.card}>
                 <CardActionArea>
-                <CardMedia component="img" image={x.featured_image}/>
+                <CardMedia component="img" image={x.featured_image1}/>
                 </CardActionArea>
             </Card>
+
         </div>
+
+        
 
         <div>
             <Typography variant="h5"><b>{x.name}</b></Typography>
-            <Typography  variant="h6" style={{color:'red'}}><b> ₹ {x.price}/-</b></Typography><br></br>
+            <Typography  variant="h6" style={{color:'red'}}><b> ₹ {x.price}/-</b></Typography>
             <Typography  variant="body1" style={{color:'grey'}}><b> Inclusive of all taxes</b></Typography><br></br>
-
-            
-            
-        
 
             <Typography>Description</Typography>
             <Typography variant="body2" style={{color:'grey'}}>{x.description}</Typography>
@@ -131,17 +108,38 @@ export default function Product(){
             </Typography>
 
             <br></br><br></br>
+            
             <Fab variant="extended" color="secondary" className={style.buttons}>Add to Bag</Fab>
+            <Fab variant="extended" color="inherit" className={style.buttons} onClick={()=>history("/NewArrivals")}>Check New Arrivals</Fab>
             <Fab variant="extended" color="primary" className={style.buttons}>Buy Now</Fab>
-
             <br></br>
 
             </div>
-        </div>)}
-        
-        <AboutUs/>    
-        </div>}
+        </div>
 
+        <div style={{marginLeft:90, color:'red'}}><b><h5>PRODUCT GALLERY</h5></b><br></br></div>
+
+        <div style={{display:'flex',flexDirection:"row", marginBottom:70}}>
+            <Card className = {style.otherImages}>
+                <CardActionArea>
+                <CardMedia component="img" image={x.featured_image2}/>
+                </CardActionArea>
+            </Card>
+            <Card className = {style.otherImages}>
+                <CardActionArea>
+                <CardMedia component="img" image={x.featured_image3}/>
+                </CardActionArea>
+            </Card>
+            <Card className = {style.otherImages}>
+                <CardActionArea>
+                <CardMedia component="img" image={x.featured_image4}/>
+                </CardActionArea>
+            </Card>
+        </div>
+        </div>)}
+            
+        </div>}
+        <AboutUs/>
         </>
 
     )

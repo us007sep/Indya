@@ -7,17 +7,18 @@ const useStyle = makeStyles({
     card:{
         width:window.innerWidth/5,
         borderRadius:20,
-        height:'540px'
+        height:'540px',
+        marginLeft:10
     }
 })
 
-export default function(prop : Item){
+export default function Card_(prop : Item){
     const hist = useNavigate();
     const style = useStyle();
     return(
         <Card className={style.card} onClick={()=>hist("/Products/"+ prop.name)}>
             <CardActionArea>
-                <CardMedia component="img" image={prop.featured_image} alt={prop.name}/>
+                <CardMedia component="img" image={prop.featured_image1} alt={prop.name}/>
                 <CardContent>
                     <Typography><b>{prop.name}</b></Typography>
                     <Typography style={{color:'#b69575'}}><b>Rs {prop.price}</b></Typography>

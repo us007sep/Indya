@@ -7,14 +7,13 @@ const useStyle = makeStyles({
         backgroundColor:'#ede8d8',
         height:3.81*window.innerHeight,
         padding:150,
-        paddingTop:60
+        paddingTop:60,
+        width:window.innerWidth
     },
     quality:{
         borderTop:'2px #dcdcdc solid',
         borderBottom:'2px #dcdcdc solid',
         padding:20,
-        display:'flex',
-        flexDirection:'row',
     },
     address:{
         borderBottom:'2px #dcdcdc solid',

@@ -1,6 +1,7 @@
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles"
 import { useEffect } from "react";
+import Nav from "react-bootstrap/esm/Nav";
 import { useDispatch, useSelector } from "react-redux";
 import AboutUs from "./AboutUs";
 import { Schema } from "./AppState";
@@ -34,7 +35,8 @@ const useStyle = makeStyles({
         minWidth:window.innerWidth/3,
     },
     items_grid:{
-        margin : 30
+        margin : 30,
+        marginTop:0
     }
 })
 
@@ -53,7 +55,7 @@ export default function Kurtis(){
             myHeaders.append("Content-Type", "application/json");
 
             var graphql = JSON.stringify({
-            query: "{\n    items{\n        name,\n        id,\n        featured_image,\n        price,\n        description,\n        category\n    }\n}",
+            query: "{\n  items{\n    name\n    description\n    featured_image1\n    featured_image2\n    featured_image3\n    featured_image4\n    category\n    price\n    home\n    new\n  }\n}",
             variables: {}
             })
             var requestOptions = {
@@ -71,6 +73,7 @@ export default function Kurtis(){
         api();    
     },[dispatch])
 
+
     return(
         <>
         {!selector.areloaded && <LoadingSpinner />} 
@@ -82,12 +85,18 @@ export default function Kurtis(){
                 <div className={style.topStyle}><b>📢 Free Shipping on All Orders</b></div>
             </div>
 
+            <div style={{marginLeft: 40,display:"flex",flexDirection:'row'}}> 
+            <br></br>
+            <Nav.Link href="/Home" id="Home" style={{color:'black'}}><b><h6>Home  |</h6></b></Nav.Link>
+            <Nav.Link href="/Lehngas&Sarees" id="Lehngas" style={{color:'red', marginLeft:-20}}><b><h6>Lehngas & Sarees</h6></b></Nav.Link>
+            </div>
+
             <Grid container spacing={6} className={style.items_grid}>
             {selector.it.filter(x=> x.category.toLowerCase().includes("lehngas")).map(x=><Grid item>
                 <ItemCard{...x}/></Grid>)}
             </Grid>
-            <AboutUs/>
         </div>}        
+        <AboutUs/>
         </>
     )
 }

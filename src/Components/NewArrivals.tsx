@@ -44,7 +44,7 @@ interface Iitems{
     data:{items:Item[]}
 }
 
-export default function Kurtis(){
+export default function NewArrivals(){
     const style = useStyle();
     const selector = useSelector((x:Schema) => x.ItemsReducer);
 
@@ -89,12 +89,11 @@ export default function Kurtis(){
         <div style={{marginLeft: 40,display:"flex",flexDirection:'row'}}> 
             <br></br>
             <Nav.Link href="/Home" id="Home" style={{color:'black'}}><b><h6>Home  |</h6></b></Nav.Link>
-            <Nav.Link href="/Kurtis" id="Kurtis" style={{color:'red', marginLeft:-20}}><b><h6>Kurtis</h6></b></Nav.Link>
-            
+            <Nav.Link href="/NewArrivals" id="NewArrivals" style={{color:'red', marginLeft:-20}}><b><h6>New Arrivals</h6></b></Nav.Link>
         </div>
 
         <Grid container spacing={6} className={style.items_grid}>
-        {selector.it.filter(x=> x.category.toLowerCase().includes("kurtis")).map(x=><Grid item>
+        {selector.it.filter(x=> x.new===1).map(x=><Grid item>
             <ItemCard{...x}/></Grid>)}
         </Grid>
         </div>}

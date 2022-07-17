@@ -44,7 +44,7 @@ interface Iitems{
     data:{items:Item[]}
 }
 
-export default function Kurtis(){
+export default function Accessories(){
     const style = useStyle();
     const selector = useSelector((x:Schema) => x.ItemsReducer);
 
@@ -81,20 +81,19 @@ export default function Kurtis(){
         {selector.areloaded &&    
         <div>
         <div className={style.top}>
-            <div className={style.topStyle}><b>Premium Quality</b></div>
-            <div className={style.top_sub}><b>Latest Kurti Collection</b></div>
+            <div className={style.topStyle}><b>Worldwide Shopping</b></div>
+            <div className={style.top_sub}><b>The Big Indya Sale | Upto 70% OFF</b></div>
             <div className={style.topStyle}><b>📢 Free Shipping on All Orders</b></div>
-        </div>   
+        </div>
 
         <div style={{marginLeft: 40,display:"flex",flexDirection:'row'}}> 
             <br></br>
             <Nav.Link href="/Home" id="Home" style={{color:'black'}}><b><h6>Home  |</h6></b></Nav.Link>
-            <Nav.Link href="/Kurtis" id="Kurtis" style={{color:'red', marginLeft:-20}}><b><h6>Kurtis</h6></b></Nav.Link>
-            
+            <Nav.Link href="/Accessories" id="Accessories" style={{color:'red', marginLeft:-20}}><b><h6>Accessories</h6></b></Nav.Link>
         </div>
 
         <Grid container spacing={6} className={style.items_grid}>
-        {selector.it.filter(x=> x.category.toLowerCase().includes("kurtis")).map(x=><Grid item>
+        {selector.it.filter(x=> x.category.toLowerCase().includes("accessories")).map(x=><Grid item>
             <ItemCard{...x}/></Grid>)}
         </Grid>
         </div>}
