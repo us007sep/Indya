@@ -76,7 +76,6 @@ const useStyle = makeStyles({
     items_grid:{
         margin : 30
     }
-
 })
 
 interface Iitems{
@@ -146,7 +145,7 @@ export default function Home(){
             {/* Division for video + content */}
             <div className={style.videoDiv}>
                 <div className={style.video}>
-                <iframe width='100%'height={480} src="https://www.youtube.com/embed/ltXD5HU67KQ" allow="autoplay" allowFullScreen title="video"/>
+                <iframe width='100%'height={480} src="https://www.youtube.com/embed/TXbEmnZxLFM" allow="autoplay" allowFullScreen title="video"/>
                 </div>
                 <div  style={{width:'35%' , color:'solid black', fontFamily:'Lato,sans-serif'}}>
                 <b style={{fontSize:50, borderBottom:'6px solid #000'}}>INDYA L</b><b style={{fontSize:50}}>UXE</b><br></br><br></br>
@@ -154,14 +153,14 @@ export default function Home(){
                 Indya Luxe. Encompassing lavish head-to-toe ensembles laden with meticulous crafts and dipped in lush celebratory hues, 
                 this collection is perfect for the modern bridesmaid at the quintessential big fat Indian wedding.</b>
                 <br></br><br></br>
-                <Fab color="secondary" variant="extended"><b>Shop the collection</b></Fab>
+                <Fab color="secondary" variant="extended" onClick={()=>hist("/NewArrivals")}><b>Shop the collection</b></Fab>
                 </div>
             </div>
 
             {/* Division for 2 Videos */}
             <div className={style.videoDiv}>
                 <div>
-                    <iframe width={window.innerWidth/2.2} height={380} src="https://www.youtube.com/embed/We36ERbeHes" allow="autoplay" allowFullScreen title="video"/>
+                    <iframe width={window.innerWidth/2.2} height={380} src="https://www.youtube.com/embed/c9rYrxVj4Ss" allow="autoplay" allowFullScreen title="video"/>
                 </div>
                 <div>
                     <iframe width={window.innerWidth/2.2} height={380} src="https://www.youtube.com/embed/ZOE6erHTBhE" allow="autoplay" allowFullScreen title="video"/>

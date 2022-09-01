@@ -7,7 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch, useSelector } from "react-redux";
 import { Schema } from "./AppState";
-import { useContext, useEffect} from "react";
+import { useContext, useEffect, useState} from "react";
 import { finished_writing, Item, started_writing } from "./ItemReducer";
 import { UserContext } from "./UserContext";
 
@@ -48,6 +48,7 @@ export default function Navigation(){
     const style = useStyle();
     const hist = useNavigate();
     const context = useContext(UserContext);
+    const [search,setSearch] = useState<string>("");
 
     const userExist = context;
     const dispatch = useDispatch();
@@ -77,6 +78,17 @@ export default function Navigation(){
         api();    
     },[dispatch])
 
+
+
+    const formSubmit=(event:any)=>{
+        setSearch(event.target.value);
+        console.log(event.target.value);
+	}
+
+    const Submit=()=>{
+        hist("/Search/"+ search);
+    }
+
     return(
         <>
             <Navbar expand="lg" fixed="top" style={{backgroundColor:'#f6f1db', border: '1.5px #000 solid',}} >
@@ -85,7 +97,6 @@ export default function Navigation(){
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                 <Nav
-                
                     className="me-auto my-2 my-lg-0"
                     style={{ maxHeight: '100px' }}
                     navbarScroll
@@ -108,8 +119,10 @@ export default function Navigation(){
                     placeholder="Search"
                     className="me-2"
                     aria-label="Search"
+                    value={search}
+                    onChange={formSubmit}
                     />
-                    <Button variant="outlined" style={{backgroundColor:'#b69575', color:'#fff'}}>Search</Button>
+                    <Button variant="outlined" style={{backgroundColor:'#b69575', color:'#fff'}} onClick={Submit}>Search</Button>
                 </Form>
                 </Navbar.Collapse>
             </Container>

@@ -1,7 +1,9 @@
 import { Fab, makeStyles } from "@material-ui/core"
 import firebase from "firebase";
+import { useContext } from "react";
 import { useNavigate} from "react-router-dom";
 import background from "../Images/SignUp.jpeg";
+import { UserContext } from "./UserContext";
 
 const useStyle = makeStyles({
     parent_container:{
@@ -34,8 +36,13 @@ const useStyle = makeStyles({
 export default function LogOut(){
     const style = useStyle();
     const history = useNavigate();
+    const context = useContext(UserContext);
+
+    const userExist = context;
+
     return(
-        <div className={style.parent_container}>
+        <>
+        {userExist && <div className={style.parent_container}>
             <div className={style.container}>
                 <h4>Confirm to Logout</h4>
                 <div className={style.buttons}>
@@ -47,6 +54,7 @@ export default function LogOut(){
                 </div>
                 
             </div>
-        </div>
+        </div>}
+        </>
     )
 }

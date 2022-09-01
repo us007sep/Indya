@@ -17,6 +17,7 @@ import { UserContext } from './Components/UserContext';
 import LogOut from './Components/LogOut';
 import Accessories from './Components/Accessories';
 import NewArrivals from './Components/NewArrivals';
+import Search from './Components/Search';
 
 
 export default function App() {
@@ -42,6 +43,7 @@ export default function App() {
           <Route path='/' element={<Home/>}/>
           <Route path="*" element={<Navigate to="/Home" replace/>}/>
           <Route path='/LogOut' element={<LogOut/>}/>
+          <Route path='/Search/:name' element={<Search/>}/>
         </Routes>
       </BrowserRouter>
       </Provider>
