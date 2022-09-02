@@ -46,7 +46,7 @@ export default function LogOut(){
             <div className={style.container}>
                 <h4>Confirm to Logout</h4>
                 <div className={style.buttons}>
-                    <Fab variant="extended" color="primary" onClick={()=>history("/Home")}>No, Go Back</Fab>
+                    <Fab variant="extended" color="primary" onClick={()=>history("/Home")}>No, Go to Home</Fab>
                     <Fab variant="extended" color="secondary" style={{marginRight:20}} onClick={()=>{
                         firebase.auth().signOut();
                         history("/Home");

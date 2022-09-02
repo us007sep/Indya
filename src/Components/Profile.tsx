@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { AddAPhoto } from "@material-ui/icons";
 import { useNavigate } from "react-router-dom";
 import background from "../Images/SignUp.jpeg";
-import LogOut from "./LogOut";
 import { UserContext } from "./UserContext";
 
 const useStyle = makeStyles({
@@ -58,10 +57,10 @@ export default function Profile(){
             </Card>
 
             <div className={style.buttons}>
-            <Fab color="primary" variant="extended" id='DPChange' onClick={()=>{hist("/DPChange")}} >
+            <Fab color="secondary" variant="extended" id='DPChange' onClick={()=>{hist("/DPChange")}} >
                 <AddAPhoto> </AddAPhoto>
             </Fab>
-            <Fab color="secondary" variant="extended" id='changePass' onClick={()=>{hist("/PasswordChange")}}>Change Password</Fab>    
+            {/* <Fab color="secondary" variant="extended" id='changePass' onClick={()=>{hist("/PasswordChange")}}>Change Password</Fab>     */}
             <Fab color="primary" variant="extended" id='logout' onClick={()=>hist("/LogOut")}>Sign Out</Fab>
             <Fab color="secondary" variant="extended" id='home' onClick={()=>hist("/Home")}>Home</Fab>
             </div>    

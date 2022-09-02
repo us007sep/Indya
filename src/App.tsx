@@ -18,6 +18,7 @@ import LogOut from './Components/LogOut';
 import Accessories from './Components/Accessories';
 import NewArrivals from './Components/NewArrivals';
 import Search from './Components/Search';
+import DPChange from './Components/DPChange';
 
 
 export default function App() {
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/Home" replace/>}/>
           <Route path='/LogOut' element={<LogOut/>}/>
           <Route path='/Search/:name' element={<Search/>}/>
+          <Route path='/DPChange' element={<DPChange/>}/>
         </Routes>
       </BrowserRouter>
       </Provider>
